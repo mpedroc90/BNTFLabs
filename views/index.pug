@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    div.row
+      table.col-12.table
+        each item in users
+          tr(user-id=item.id)
+            td= item.lastname
+            td= item.name
+            td= item.profession
+            td(id="email-"+item.id)= item.email
+            td 
+              a.btn.btn-primary.view(href="javascript:void") Ver
+            td 
+              a.btn.btn-primary.update(href="javascript:void") Editar
+            td
+              a.btn.btn-primary.delete(href="javascript:void" + item.id) Eliminar
+  

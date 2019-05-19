@@ -1,0 +1,23 @@
+{
+  "name": "bntflabs",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ."
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "base-64": "^0.1.0",
+    "bluebird": "^3.5.4",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "moment": "^2.24.0",
+    "morgan": "~1.9.0",
+    "node-fetch": "^2.6.0",
+    "pug": "2.0.0-beta11",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}
