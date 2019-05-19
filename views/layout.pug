@@ -13,6 +13,7 @@ html
           div.d-none.alert.alert-info.fade.show(role=alert)
             span#info="custom message"
         block content
+    block modal
     
     #viewmodal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
       .modal-dialog.modal-md(role='document')
@@ -83,7 +84,9 @@ html
             
             
     script(src="/javascripts/jquery-3.4.1.min.js")
-    script(src="/javascripts/bootstrap.min.js")
-    script(src="/javascripts/bootstrap.bundle.min.js")
-    script(src="/javascripts/Chart.min.js")
+    script(src="/javascripts/bootstrap/bootstrap.min.js")
+    script(src="/javascripts/bootstrap/bootstrap.bundle.min.js")
+    script(src="/javascripts/chart/Chart.min.js")
+    script(src="/javascripts/custom-chart.js")
+    script(src="/javascripts/users.js")
     script(src="/javascripts/index.js")

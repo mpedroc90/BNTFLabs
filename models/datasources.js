@@ -2,9 +2,9 @@ var axios = require("axios");
 var users = [];
 
 if (users.length === 0) {
-  let url = "http://localhost:3500"; //"http://netzone.cl/bntf/api.users.prueba/skeleton/api";
+  let url = process.env.API_URL; 
   const headers = {
-    token: '%ca7b=E]bV?t_M8C(Q]qU{qzQTPJOX/%AoKVv3S`Z`"Uxh]uwBfnooPJ%DW9)]m',
+    token: process.env.API_TOKEN
   };
 
   axios

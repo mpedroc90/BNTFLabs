@@ -1,6 +1,8 @@
 $(function() {
 
-  var myChart;
+  userModule = UserModule();
+  customGraphModule = CustomChartModule();
+  
   function getId(object) {
     const tr = $(object).closest("tr");
     return tr.attr("user-id");
@@ -9,13 +11,9 @@ $(function() {
   $(".delete").click(function(e) {
     e.preventDefault();
     const tr = $(this).closest("tr");
-    $.ajax({
-      url: `/${getId(this)}`,
-      method: "DELETE",
-      success: function() {
-        tr.remove();
-        showInfo("El usuario se ha eliminado correctamente");
-      },
+    userModule.deleteUser(getId(this), function() {
+      tr.remove();
+      showInfo("El usuario se ha eliminado correctamente");
     });
   });
 
@@ -27,7 +25,7 @@ $(function() {
     );
 
     const id = getId(this);
-    $.get("/" + id, function(user) {
+    userModule.getUser(id, function(user) {
       $("#name").html(`${user.name} ${user.lastname}`);
       $("#rut").html(`${user.rut}`);
       $("#age").html(`${user.age}`);
@@ -36,62 +34,13 @@ $(function() {
       $("#email").html(`${user.email}`);
       $("#name").html(`${user.name} ${user.lastname}`);
 
-      if (!!user.image_profile)
+      if (!!user.image_profile){
         $("#image_profile").attr("src", user.image_profile);
-
-        
-      var ctx = document.getElementById("myChart").getContext("2d");
-      //console.log(ctx);
-      
-      let back = [
-        "rgb(255, 99, 132)",
-        "rgb(54, 162, 235)",
-        "rgb(255, 206, 86)",
-        "rgb(75, 192, 192)",
-        "rgb(153, 102, 255)",
-      ];
-      if(!! myChart) {
-        myChart.destroy();
       }
       
-      myChart = new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: Object.keys(user.skills),
-          datasets: [
-            {
-              label: "Skills",
-              data: Object.values(user.skills),
-              backgroundColor: [
-                ...Array(Object.keys(user.skills).length).keys(),
-              ].map(i => back[i % back.length]),
-              borderColor: [
-                "rgba(255, 99, 132, 1)",
-                "rgba(54, 162, 235, 1)",
-                "rgba(255, 206, 86, 1)",
-                "rgba(75, 192, 192, 1)",
-                "rgba(153, 102, 255, 1)",
-                "rgba(255, 159, 64, 1)",
-              ],
-              borderWidth: 1,
-            },
-          ],
-        },
-        options: {
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true,
-                },
-              },
-            ],
-          },
-        },
-      })
-
-    
-
+      var ctx = document.getElementById("myChart").getContext("2d");
+      customGraphModule.create(ctx,user.skills);
+      
       $("#viewmodal").modal();
     });
   });
@@ -99,13 +48,11 @@ $(function() {
   $(".update").click(function(e) {
     e.preventDefault();
     const id = getId(this);
-
-
-    $.get("/" + id, function(user) {
+    userModule.getUser(id, function(user) {
       $("input[name=phone]").val(`${user.phone}`);
       $("input[name=email]").val(`${user.email}`);
       $("textarea[name=address]").val(user.address);
-      $("#form").attr("action", "/" + id);
+      $("#form").attr("action", id);
       $("#form-error").addClass("d-none");
       $("#updatemodal").modal();
     });
@@ -134,10 +81,9 @@ $(function() {
     if (errors.length === 0) {
       $("#form-error").addClass("d-none");
       
-      $.post($(form).attr("action"), $(form).serialize(), function(user) {
+      userModule.updateUser($(form).attr("action"), $(form).serialize(), function(user) {
         $(`#email-${user.id}`).html(user.email);
         $("#updatemodal .close-modal").click();
-
         showInfo("El usuario se ha modificado correctamente.");
       });
     
