@@ -1,4 +1,4 @@
-# BTNF test
+# BTNF Application Test
 
 ## Description
 This project is an application test to BTNFLabs. 
