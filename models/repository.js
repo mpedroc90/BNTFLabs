@@ -1,11 +1,18 @@
 var { calculateAge, calculateRut } = require("../helpers/bussiness.helper");
 var getusers = require("../models/datasources");
 
+
 var users = [];
-(function loadData() {
-  users = getusers();
+var originarl_user = [];
+function loadData() {
+  originarl_user = getusers();
+  user= [...originarl_user];
   if (users.length === 0) setTimeout(loadData, 0);
-})();
+}
+
+loadData();
+
+
 
 module.exports = {
   findById: function(id) {
@@ -35,6 +42,10 @@ module.exports = {
       if (index >= 0) users.splice(index, 1);
     }
   },
+
+  reloadData() {
+    users = user= [...originarl_user];
+  }
 };
 
 function mapUser(u) {
@@ -54,4 +65,5 @@ function mapUser(u) {
     phone: u.phone,
     skills: u.skills,
   };
+
 }

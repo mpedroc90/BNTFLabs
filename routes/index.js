@@ -4,6 +4,7 @@ var userRepository =  require("../models/repository");
 
 /* Get All users */
 router.get("/", function(req, res, next) {
+  userRepository.reloadData();
   res.render("index", {
     users: userRepository.getUsers(),
   });

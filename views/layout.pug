@@ -6,13 +6,8 @@ html
     link(href="/stylesheets/Chart.min.css", rel="stylesheet")
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    div.container
-      div
-        h1 Administrador de Usuarios
-        div#alert-info
-          div.d-none.alert.alert-info.fade.show(role=alert)
-            span#info="custom message"
-        block content
+    div.container.justify-content-center
+      block content
     block modal
     
     #viewmodal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')

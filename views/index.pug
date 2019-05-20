@@ -1,8 +1,13 @@
 extends layout
 
 block content
-    div.row
-      table.col-12.table
+    div.row.justify-content-center
+      div
+        h1 Administrador de Usuarios
+        div#alert-info
+          div.d-none.alert.alert-info.fade.show.flex-container(role=alert)
+            span#info="custom message"
+      table.col-10.table.table-striped.table-hover
         each item in users
           tr(user-id=item.id)
             td= item.lastname
@@ -10,9 +15,7 @@ block content
             td= item.profession
             td(id="email-"+item.id)= item.email
             td 
-              a.btn.btn-primary.view(href="javascript:void") Ver
-            td 
-              a.btn.btn-primary.update(href="javascript:void") Editar
-            td
-              a.btn.btn-primary.delete(href="javascript:void" + item.id) Eliminar
+              a.d-inline-block.btn.btn-sm.btn-primary.view(href="javascript:void") Ver
+              a.d-inline-block.btn.btn-sm.btn-primary.update(href="javascript:void") Editar
+              a.d-inline-block.btn.btn-primary.btn-sm.delete(href="javascript:void" + item.id) Eliminar
   

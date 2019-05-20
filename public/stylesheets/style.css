@@ -16,3 +16,12 @@ a {
 #form-error > li {
   padding: 5px;
 }
+
+a.btn {
+  margin-right: 5px;
+}
+
+.alert-info {
+  position: fixed;
+  top:0;
+}

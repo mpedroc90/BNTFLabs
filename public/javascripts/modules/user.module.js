@@ -4,20 +4,24 @@ function UserModule(options) {
     const errors = [];
 
     if (!user.phone || $.trim(user.phone) == "") {
-      errors.push({ field: "phone", message: "El telefono es requerido" });
+      errors.push({ field: "phone", message: "El t&eacute;lefono es requerido" });
+    }
+
+    if (/(^[0-9]{8})$/i.test(user.phone) == "") {
+      errors.push({ field: "phone", message: "El t&eacute;lefono es inv&aacute;lido" });
     }
 
     if (!user.address || $.trim(user.address) == "") {
-      errors.push({ field:"address", message:"La dirección es requerida"});
+      errors.push({ field:"address", message:"La direcci&oacute;n es requerida"});
     }
 
     if (!user.email || $.trim(user.email) == "") {
       
-      errors.push({ field:"email", message:"El email  es requerido"});
+      errors.push({ field:"email", message:"El email es requerido"});
     }
     
     if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(user.email)) {
-      errors.push({ field:"email", message:"El email  es inv&aacute;lido"});
+      errors.push({ field:"email", message:"El email es inv&aacute;lido"});
     }
     
     return errors;
