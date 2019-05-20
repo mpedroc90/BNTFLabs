@@ -7,7 +7,7 @@ function UserModule(options) {
       errors.push({ field: "phone", message: "El t&eacute;lefono es requerido" });
     }
 
-    if (/(^[0-9]{8})$/i.test(user.phone) == "") {
+    if (/(^[0-9]{5,})$/i.test(user.phone) == "") {
       errors.push({ field: "phone", message: "El t&eacute;lefono es inv&aacute;lido" });
     }
 
